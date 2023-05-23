@@ -1,4 +1,4 @@
-package com.example.fructuskotlinmvvm.viewmodel
+package com.example.fructuskotlinmvvm.common.viewmodel
 
 import android.app.Application
 import androidx.lifecycle.ViewModel

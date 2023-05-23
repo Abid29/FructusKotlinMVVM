@@ -1,4 +1,4 @@
-import com.example.fructuskotlinmvvm.model.Fruit
+import com.example.fructuskotlinmvvm.data.model.Fruit
 
 class FruitRepository {
     private var allFruits: ArrayList<Fruit>? = null

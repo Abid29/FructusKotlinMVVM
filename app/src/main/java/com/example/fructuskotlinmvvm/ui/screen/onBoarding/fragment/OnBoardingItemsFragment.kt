@@ -1,6 +1,6 @@
-package com.example.fructuskotlinmvvm.fragments
+package com.example.fructuskotlinmvvm.ui.screen.onBoarding.fragment
 
-import FruitRepository
+import android.annotation.SuppressLint
 import android.graphics.Color
 import android.graphics.drawable.GradientDrawable
 import android.os.Bundle
@@ -13,22 +13,28 @@ import android.widget.RelativeLayout
 import android.widget.TextView
 import com.bumptech.glide.Glide
 import com.example.fructuskotlinmvvm.R
-import com.example.fructuskotlinmvvm.model.Fruit
+import com.example.fructuskotlinmvvm.data.model.Fruit
+import com.example.fructuskotlinmvvm.ui.screen.Interface.Communicator
+import com.example.fructuskotlinmvvm.ui.screen.itemListScreen.fragment.ItemListFragment
 
-class viewPagerItemsFragment(private val fruitArrayList: ArrayList<Fruit>? , private val position: Int) : Fragment() {
+class OnBoardingItemsFragment(private val fruit : Fruit) : Fragment() {
 
+    private lateinit var communicator: Communicator
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
     }
 
+    @SuppressLint("ResourceType")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        val view: View = inflater.inflate(R.layout.fragment_view_pager_items, container, false)
+        val view: View = inflater.inflate(R.layout.fragment_on_boarding_items, container, false)
+
+        communicator = activity as Communicator
 
         var relativeLayout: RelativeLayout = view.findViewById(R.id.relativeLayout)
         var imageView: ImageView = view.findViewById(R.id.imageView)
@@ -36,7 +42,6 @@ class viewPagerItemsFragment(private val fruitArrayList: ArrayList<Fruit>? , pri
         var headline: TextView = view.findViewById(R.id.headline)
         var button: TextView = view.findViewById(R.id.startButton)
 
-        var fruit = fruitArrayList?.get(position)
         if (fruit != null) {
             title.text = fruit.title
             headline.text = fruit.headline
@@ -60,7 +65,17 @@ class viewPagerItemsFragment(private val fruitArrayList: ArrayList<Fruit>? , pri
                     .into(imageView)
             }
         }
+
+        button.setOnClickListener{
+            communicator.OnBoardingFragmentToItemListFragment()
+        }
+
         return view
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
     }
     fun getImage(imageName: String?): Int? {
         return context?.getResources()?.getIdentifier(imageName, "drawable", context?.getPackageName())

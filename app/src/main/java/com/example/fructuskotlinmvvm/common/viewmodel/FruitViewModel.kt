@@ -1,10 +1,8 @@
-package com.example.fructuskotlinmvvm.viewmodel
+package com.example.fructuskotlinmvvm.common.viewmodel
 
 import FruitRepository
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.viewModelScope
-import kotlinx.coroutines.launch
 
 class FruitViewModel(
     private val app : Application,
