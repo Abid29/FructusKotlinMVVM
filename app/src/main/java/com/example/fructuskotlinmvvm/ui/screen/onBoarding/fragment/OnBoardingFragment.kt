@@ -5,12 +5,13 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.NavController
 import androidx.viewpager2.widget.ViewPager2
 import com.example.fructuskotlinmvvm.R
 import com.example.fructuskotlinmvvm.ui.screen.onBoarding.adapter.onBoardingAdapter
 import com.example.fructuskotlinmvvm.data.model.Fruit
 
-class OnBoardingFragment(val fruitList: ArrayList<Fruit>?) : Fragment() {
+class OnBoardingFragment(private val navController: NavController, val fruitList: ArrayList<Fruit>?) : Fragment() {
 
     private lateinit var viewpager2 : ViewPager2
     private lateinit var adapter: onBoardingAdapter
@@ -27,7 +28,7 @@ class OnBoardingFragment(val fruitList: ArrayList<Fruit>?) : Fragment() {
         val view : View = inflater.inflate(R.layout.fragment_on_boarding, container, false)
 
         viewpager2 = view.findViewById<ViewPager2>(R.id.viewpager2)
-        adapter = fruitList?.let { onBoardingAdapter(it,requireActivity()) }!!
+        adapter = fruitList?.let { onBoardingAdapter(navController,it,requireActivity()) }!!
         viewpager2.adapter = adapter
 
         return view
