@@ -29,4 +29,5 @@ class MainActivity : AppCompatActivity() , Communicator{
     override fun OnBoardingFragmentToItemListFragment(){
         this.supportFragmentManager.beginTransaction().replace(R.id.fragmentContainer,ItemListFragment(fruitList,this)).commit()
     }
+
 }

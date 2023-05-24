@@ -34,8 +34,6 @@ class OnBoardingItemsFragment(private val fruit : Fruit) : Fragment() {
         // Inflate the layout for this fragment
         val view: View = inflater.inflate(R.layout.fragment_on_boarding_items, container, false)
 
-        communicator = activity as Communicator
-
         var relativeLayout: RelativeLayout = view.findViewById(R.id.relativeLayout)
         var imageView: ImageView = view.findViewById(R.id.imageView)
         var title: TextView = view.findViewById(R.id.title)
@@ -66,6 +64,8 @@ class OnBoardingItemsFragment(private val fruit : Fruit) : Fragment() {
             }
         }
 
+        communicator = activity as Communicator
+
         button.setOnClickListener{
             communicator.OnBoardingFragmentToItemListFragment()
         }
@@ -73,10 +73,6 @@ class OnBoardingItemsFragment(private val fruit : Fruit) : Fragment() {
         return view
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-    }
     fun getImage(imageName: String?): Int? {
         return context?.getResources()?.getIdentifier(imageName, "drawable", context?.getPackageName())
     }

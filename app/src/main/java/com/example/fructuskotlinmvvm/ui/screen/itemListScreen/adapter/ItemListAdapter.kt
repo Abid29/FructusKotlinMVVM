@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.fructuskotlinmvvm.R
@@ -16,6 +17,7 @@ import com.example.fructuskotlinmvvm.data.model.Fruit
 class ItemListAdapter(val fruitList : ArrayList<Fruit> , context : Context) :
     RecyclerView.Adapter<ItemListAdapter.MyViewHolder>() {
 
+    val contxt : Context = context
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
@@ -28,13 +30,13 @@ class ItemListAdapter(val fruitList : ArrayList<Fruit> , context : Context) :
     override fun onBindViewHolder(holder: ItemListAdapter.MyViewHolder, position: Int) {
         val fruit: Fruit = fruitList.get(position)
 
-        holder.heading.text = fruit.title
-        holder.description.text = fruit.headline
-        Glide.with(context)
+        holder.title.text = fruit.title
+        holder.headline.text = fruit.headline
+        Glide.with(contxt)
             .asBitmap()
             .load(
-                context.getResources()
-                    .getIdentifier(fruit.image, "drawable", context.getPackageName())
+                contxt.getResources()
+                    .getIdentifier(fruit.image, "drawable", contxt.getPackageName())
             )
             .into(holder.imageView)
 
@@ -50,6 +52,10 @@ class ItemListAdapter(val fruitList : ArrayList<Fruit> , context : Context) :
 
         holder.imageView.background = gd
 
+        holder.cardView.setOnClickListener{
+
+        }
+
     }
 
     override fun getItemCount(): Int = fruitList.size
@@ -57,10 +63,9 @@ class ItemListAdapter(val fruitList : ArrayList<Fruit> , context : Context) :
 
     class MyViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView) {
         var imageView: ImageView = itemView.findViewById<ImageView>(R.id.imageView)
-        var heading: TextView = itemView.findViewById<TextView>(R.id.heading)
-        var cardView: TextView? = itemView.findViewById<TextView>(R.id.crdvw)
-        var description: TextView = itemView.findViewById<TextView>(R.id.desc)
-
+        var title: TextView = itemView.findViewById<TextView>(R.id.title)
+        var headline: TextView = itemView.findViewById<TextView>(R.id.headline)
+        var cardView: CardView = itemView.findViewById<CardView>(R.id.cardView)
     }
 
 }
